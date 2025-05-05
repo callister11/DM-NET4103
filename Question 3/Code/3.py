@@ -4,7 +4,6 @@ import os
 import numpy as np
 import logging
 
-# Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 def load_graph_from_gml(filepath):
@@ -18,10 +17,10 @@ def load_graph_from_gml(filepath):
 
 def compute_assortativity(G, attribute):
     logging.info(f"Computing assortativity for attribute '{attribute}'")
-    first_node = next(iter(G.nodes(data=True)))  # Safely get the first node and its data
-    if attribute not in first_node[1]:  # Check if the attribute exists in node data
+    first_node = next(iter(G.nodes(data=True))) 
+    if attribute not in first_node[1]: 
         logging.warning(f"Attribute '{attribute}' not found in graph nodes. Skipping.")
-        return None  # If the attribute doesn't exist
+        return None 
     return nx.attribute_assortativity_coefficient(G, attribute)
 
 def plot_assortativity_vs_size(assortativity_values, sizes, title):
@@ -69,7 +68,6 @@ def analyze_networks(folder_path):
             logging.info(f"Graph size (number of nodes): {n}")
             assortativity_results['size'].append(n)
 
-            # Assortativity by different attributes
             for attribute in ['student_fac', 'gender', 'major_index', 'dorm']:
                 assortativity = compute_assortativity(G, attribute)
                 if assortativity is not None:
@@ -77,19 +75,16 @@ def analyze_networks(folder_path):
 
     return assortativity_results
 
-# Folder path to your .gml files
 folder_path = 'data/'
 
-# Analyze networks
 logging.info("Starting network analysis")
 assortativity_results = analyze_networks(folder_path)
 
-# Plot the assortativity vs. network size for each attribute
 for attribute in ['student_fac', 'gender', 'major_index', 'dorm']:
     plot_assortativity_vs_size(assortativity_results[attribute], assortativity_results['size'], f'{attribute.capitalize()} Assortativity vs. Network Size')
 
-# Plot the distribution of assortativity for each attribute
 for attribute in ['student_fac', 'gender', 'major_index', 'dorm']:
     plot_assortativity_distribution(assortativity_results[attribute], f'{attribute.capitalize()} Assortativity Distribution')
 
 logging.info("Network analysis and plotting completed")
+

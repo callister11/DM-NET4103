@@ -1,4 +1,6 @@
+torch
 networkx
-matplotlib
+scikit-learn
+scipy
 numpy
-tqdm
+matplotlib
