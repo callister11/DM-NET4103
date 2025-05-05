@@ -1,0 +1,30 @@
+# Dossiers à ignorer
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+build/
+dist/
+*.log
+
+# Dossier contenant les graphes Facebook100
+data/
+fb100/
+*.mat
+*.gml
+
+# Fichiers de notebook temporaires
+.ipynb_checkpoints/
+
+# Environnement virtuel
+.venv/
+env/
+venv/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Cache VS Code / IDE
+.vscode/
+*.swp
